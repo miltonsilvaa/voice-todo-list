@@ -1,0 +1,8 @@
+{
+  "name": "voice-todo-list",
+  "private": true,
+  "description": "Lista de tarefas controlada por voz com a Web Speech API",
+  "scripts": {
+    "test": "node --test"
+  }
+}

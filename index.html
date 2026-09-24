@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VoiceTasks — Lista de Tarefas por Voz</title>
+<meta name="description" content="Lista de tarefas controlada por comandos de voz, usando a Web Speech API nativa do navegador.">
+<meta name="theme-color" content="#0f1115">
+<meta property="og:title" content="VoiceTasks — Lista de Tarefas por Voz">
+<meta property="og:description" content="Lista de tarefas controlada por comandos de voz, usando a Web Speech API nativa do navegador.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://miltonsilvaa.github.io/voice-todo-list/">
+<meta property="og:image" content="https://miltonsilvaa.github.io/voice-todo-list/screenshot.webp">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<main class="container">
+  <header class="hero">
+    <h1><span aria-hidden="true">🎙️</span> VoiceTasks</h1>
+    <p>Uma lista de tarefas que você controla <strong>falando</strong> — usando a Web Speech API nativa do navegador, sem nenhum serviço externo de reconhecimento de voz.</p>
+  </header>
+
+  <section class="mic-section">
+    <button class="mic-btn" id="micBtn" type="button" aria-label="Ativar microfone" aria-pressed="false">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+        <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/>
+      </svg>
+    </button>
+    <p class="mic-status" id="micStatus" aria-live="polite">Clique no microfone e diga um comando</p>
+  </section>
+
+  <section class="commands-help">
+    <p><strong>Comandos de voz reconhecidos</strong> (em português):</p>
+    <ul>
+      <li>"Adicionar <em>comprar leite</em>" — cria uma nova tarefa</li>
+      <li>"Concluir <em>comprar leite</em>" — marca uma tarefa como feita</li>
+      <li>"Remover <em>comprar leite</em>" — apaga uma tarefa</li>
+      <li>"Limpar tudo" — apaga todas as tarefas</li>
+    </ul>
+  </section>
+
+  <section class="fallback-section">
+    <label class="fallback-label" for="fallbackInput">Sem microfone à mão? Digite o comando manualmente (usa exatamente a mesma lógica de interpretação):</label>
+    <form id="fallbackForm" class="fallback-form">
+      <input type="text" id="fallbackInput" placeholder='Ex: "adicionar estudar para a prova"' autocomplete="off">
+      <button type="submit">Executar</button>
+    </form>
+  </section>
+
+  <section class="feedback-log" id="feedbackLog" aria-live="polite"></section>
+
+  <section class="tasks-section">
+    <div class="tasks-header">
+      <h2>Tarefas</h2>
+      <span class="tasks-count" id="tasksCount">0 pendentes</span>
+    </div>
+    <ul class="tasks-list" id="tasksList"></ul>
+    <p class="empty-state" id="emptyState">Nenhuma tarefa ainda. Fale ou digite "adicionar ..." para começar.</p>
+  </section>
+</main>
+
+<script src="js/commands.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
